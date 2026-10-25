@@ -1,0 +1,41 @@
+{
+  "name": "@zeroko-io/astro",
+  "version": "0.1.0",
+  "description": "An Astro adapter for Zeroko: the site built into a Zeroko service and deployed.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "default": "./dist/server.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@zeroko-io/core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "astro": ">=5"
+  },
+  "devDependencies": {
+    "astro": "^7.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeroko-io/sdk.git",
+    "directory": "packages/astro"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

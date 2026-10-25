@@ -1,0 +1,34 @@
+{
+  "name": "@zeroko-io/nitro",
+  "version": "0.1.0",
+  "description": "A Nitro preset for Zeroko: Nuxt, SolidStart and the rest of Nitro's frameworks, built into a Zeroko service and deployed.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@zeroko-io/core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "nitropack": ">=2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeroko-io/sdk.git",
+    "directory": "packages/nitro"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

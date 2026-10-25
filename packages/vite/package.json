@@ -1,0 +1,37 @@
+{
+  "name": "@zeroko-io/vite",
+  "version": "0.1.0",
+  "description": "A Vite plugin that builds a site, a single-page app or a full-stack app into a Zeroko service, and deploys it.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@zeroko-io/core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "vite": ">=7"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeroko-io/sdk.git",
+    "directory": "packages/vite"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

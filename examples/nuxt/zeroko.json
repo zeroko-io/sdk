@@ -1,0 +1,4 @@
+{
+  "service": "example-nuxt",
+  "bindings": { "DB": "db" }
+}

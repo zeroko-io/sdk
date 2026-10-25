@@ -1,0 +1,4 @@
+{
+  "service": "example-astro",
+  "bindings": { "DB": "db" }
+}

@@ -1,0 +1,40 @@
+name: publish
+
+# A vX.Y.Z tag publishes every package at that version to GitHub Packages
+# (npm.pkg.github.com, @zeroko-io), once they build. Each package's
+# version in its package.json must be X.Y.Z.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@zeroko-io"
+      - run: npm ci --no-audit --no-fund
+      - run: npx turbo run build typecheck --filter=./packages/*
+      - name: Every package at the tag's version
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          for p in packages/*/package.json; do
+            have=$(node -p "require('./$p').version")
+            [ "$have" = "$v" ] || { echo "::error::$p is $have, the tag is $v"; exit 1; }
+          done
+      - name: Publish
+        run: |
+          for d in core vite nitro sveltekit astro react-router; do
+            npm publish --workspace "packages/$d"
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

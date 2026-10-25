@@ -1,0 +1,6 @@
+{
+  "service": "example-fullstack",
+  "bindings": {
+    "DB": "db"
+  }
+}

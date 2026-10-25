@@ -1,0 +1,8 @@
+{
+  "name": "example-fullstack",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "vite build" },
+  "dependencies": { "hono": "^4.13.14", "react": "^19.0.0", "react-dom": "^19.0.0" },
+  "devDependencies": { "@vitejs/plugin-react": "*", "@zeroko-io/core": "^0.1.0", "@zeroko-io/vite": "^0.1.0", "vite": "^8.3.5" }
+}

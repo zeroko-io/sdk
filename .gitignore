@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.zeroko/
+.svelte-kit/
+.astro/
+.nuxt/
+.output/
+.react-router/
+build/
+*.log
+.env
+.turbo/

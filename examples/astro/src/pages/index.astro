@@ -1,0 +1,15 @@
+---
+import type { Database } from "@zeroko-io/core"
+import { visit } from "../lib/visits"
+
+const { DB } = Astro.locals.runtime.env as { DB: Database }
+const visits = await visit(DB)
+---
+
+<html lang="en">
+  <head><meta charset="utf-8" /><title>Astro on Zeroko</title></head>
+  <body>
+    <h1>Astro on Zeroko: visit number {visits}</h1>
+    <a href="/about">About</a>
+  </body>
+</html>

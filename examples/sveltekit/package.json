@@ -1,0 +1,7 @@
+{
+  "name": "example-sveltekit",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "vite build" },
+  "devDependencies": { "@sveltejs/kit": "^3.1.0", "@sveltejs/vite-plugin-svelte": "*", "@zeroko-io/sveltekit": "^0.1.0", "svelte": "*", "vite": "^8.3.5" }
+}

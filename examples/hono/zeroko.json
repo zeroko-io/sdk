@@ -1,0 +1,6 @@
+{
+  "service": "example-hono",
+  "bindings": {
+    "DB": "db"
+  }
+}

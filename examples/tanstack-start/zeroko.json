@@ -1,0 +1,4 @@
+{
+  "service": "example-tanstack-start",
+  "bindings": { "DB": "db" }
+}

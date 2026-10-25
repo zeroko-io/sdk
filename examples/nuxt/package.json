@@ -1,0 +1,8 @@
+{
+  "name": "example-nuxt",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "nuxt build" },
+  "dependencies": { "nuxt": "^4.6.2", "vue": "*" },
+  "devDependencies": { "@zeroko-io/nitro": "^0.1.0" }
+}
