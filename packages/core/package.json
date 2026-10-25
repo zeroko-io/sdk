@@ -1,6 +1,6 @@
 {
   "name": "@zeroko-io/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Zeroko's deployments: the bindings' types, and building and deploying a service from a project's build.",
   "license": "MIT",
   "type": "module",

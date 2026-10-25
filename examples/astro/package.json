@@ -4,5 +4,5 @@
   "type": "module",
   "scripts": { "build": "astro build" },
   "dependencies": { "astro": "^7.4.2" },
-  "devDependencies": { "@zeroko-io/astro": "^0.1.0" }
+  "devDependencies": { "@zeroko-io/astro": "^0.2.0" }
 }

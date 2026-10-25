@@ -1,6 +1,6 @@
 {
   "name": "@zeroko-io/vite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Vite plugin that builds a site, a single-page app or a full-stack app into a Zeroko service, and deploys it.",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
     "typecheck": "tsc -p . --noEmit"
   },
   "dependencies": {
-    "@zeroko-io/core": "^0.1.0"
+    "@zeroko-io/core": "^0.2.0"
   },
   "peerDependencies": {
     "vite": ">=7"
