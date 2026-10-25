@@ -33,7 +33,7 @@ jobs:
           done
       - name: Publish
         run: |
-          for d in core vite nitro sveltekit astro react-router; do
+          for d in core vite nitro sveltekit astro react-router next; do
             npm publish --workspace "packages/$d"
           done
         env:

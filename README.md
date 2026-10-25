@@ -13,6 +13,7 @@ workspace's address and token, deploys it. No CLI. The docs are at
 | `@zeroko-io/sveltekit` | SvelteKit |
 | `@zeroko-io/astro` | Astro |
 | `@zeroko-io/react-router` | React Router's framework mode |
+| `@zeroko-io/next` | Next.js, through OpenNext |
 
 A project says what its service is in `zeroko.json`, and where it goes in
 `.env`:

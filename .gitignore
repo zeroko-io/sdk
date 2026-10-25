@@ -10,3 +10,5 @@ build/
 *.log
 .env
 .turbo/
+.next/
+.open-next/

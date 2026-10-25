@@ -102,4 +102,12 @@ export const examples = [
       { path: "/robots.txt", has: "User-agent" },
     ],
   },
+  {
+    name: "nextjs",
+    checks: [
+      { path: "/", has: "Next.js on Zeroko: visit number <!-- -->1" },
+      { path: "/", has: "visit number <!-- -->2" },
+      { path: "/api/visits", has: '"framework":"next"' },
+    ],
+  },
 ]
