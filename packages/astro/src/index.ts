@@ -3,11 +3,11 @@
 // zeroko.json and .env say. The service's bindings are in
 // Astro.locals.runtime.env.
 //   astro.config.mjs: export default defineConfig({ adapter: zeroko() })
-import { rm, writeFile } from "node:fs/promises"
+import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
-import { bundle, collect, finish, type Options } from "@zeroko-io/core"
+import { build, type Options } from "@zeroko-io/core"
 import type { AstroConfig, AstroIntegration } from "astro"
 
 /** A static site's main module: its files, its 404 page for the rest. */
@@ -52,21 +52,15 @@ export default function zeroko(opts: Options = {}): AstroIntegration {
       },
       "astro:build:done": async () => {
         const root = fileURLToPath(config.root)
-        const work = path.join(root, ".zeroko")
-        const outDir = path.join(work, "server")
-        await rm(outDir, { recursive: true, force: true })
         let entry = path.join(fileURLToPath(config.build.server), config.build.serverEntry)
         if (output === "static") {
+          const work = path.join(root, ".zeroko")
+          await mkdir(work, { recursive: true })
           entry = path.join(work, "static.js")
           await writeFile(entry, STATIC)
         }
-        await bundle({ entry, outDir })
-        const deployment = await collect({
-          serverDir: outDir,
-          main: "index.js",
-          assetsDir: fileURLToPath(output === "static" ? config.outDir : config.build.client),
-        })
-        await finish(deployment, opts, root)
+        const assets = fileURLToPath(output === "static" ? config.outDir : config.build.client)
+        await build({ ...opts, entry, assets, root })
       },
     },
   }

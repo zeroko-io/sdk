@@ -4,10 +4,10 @@
 // server, a single-page app's routes get its index.html.
 //   import zeroko from "@zeroko-io/vite"
 //   export default defineConfig({ plugins: [zeroko({ server: "src/server.ts" })] })
-import { mkdir, rm, writeFile } from "node:fs/promises"
+import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 
-import { bundle, collect, finish, type Options } from "@zeroko-io/core"
+import { build, type Options } from "@zeroko-io/core"
 import type { Plugin, ResolvedConfig } from "vite"
 
 export type ZerokoViteOptions = Options & {
@@ -68,19 +68,11 @@ export default function zeroko(opts: ZerokoViteOptions = {}): Plugin {
         if (env && env.name !== "client") return
         const root = config.root
         const work = path.join(root, ".zeroko")
-        const outDir = path.join(work, "server")
-        await rm(outDir, { recursive: true, force: true })
         await mkdir(work, { recursive: true })
         const main = path.join(work, "entry.js")
         const server = opts.server ? path.resolve(root, opts.server) : undefined
         await writeFile(main, entry(server, opts.spa ?? true))
-        await bundle({ entry: main, outDir })
-        const deployment = await collect({
-          serverDir: outDir,
-          main: "index.js",
-          assetsDir: path.resolve(root, config.build.outDir),
-        })
-        await finish(deployment, opts, root)
+        await build({ ...opts, entry: main, assets: path.resolve(root, config.build.outDir), root })
       },
     },
   }

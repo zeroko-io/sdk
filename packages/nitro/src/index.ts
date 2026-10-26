@@ -9,10 +9,9 @@
 //   nuxt.config.ts:  defineNuxtConfig({ nitro: zeroko() })
 //   vite.config.ts:  plugins: [solidStart(), nitro(zeroko())]
 // Or as Nitro 2's preset: nitro: { preset: "@zeroko-io/nitro" }.
-import { rm } from "node:fs/promises"
 import path from "node:path"
 
-import { bundle, collect, finish, type Options } from "@zeroko-io/core"
+import { build, type Options } from "@zeroko-io/core"
 import { defineNitroPreset } from "nitropack/kit"
 
 type Built = {
@@ -22,15 +21,12 @@ type Built = {
 async function deploy(nitro: Built, opts: Options) {
   // Bundled again: Nitro's chunks can have names the runner doesn't take
   // ([...] and such), and this way they're one graph like every adapter's.
-  const outDir = path.join(nitro.options.rootDir, ".zeroko", "server")
-  await rm(outDir, { recursive: true, force: true })
-  await bundle({ entry: path.join(nitro.options.output.serverDir, "index.mjs"), outDir })
-  const deployment = await collect({
-    serverDir: outDir,
-    main: "index.js",
-    assetsDir: nitro.options.output.publicDir,
+  await build({
+    ...opts,
+    entry: path.join(nitro.options.output.serverDir, "index.mjs"),
+    assets: nitro.options.output.publicDir,
+    root: nitro.options.rootDir,
   })
-  await finish(deployment, opts, nitro.options.rootDir)
 }
 
 /** Nitro's options for Zeroko: the preset it builds on, and the hook that

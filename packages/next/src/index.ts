@@ -9,11 +9,11 @@
 //   zeroko.build.js:  import { build } from "@zeroko-io/next"; await build()
 import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
 
-import { bundle, collect, finish, type Options } from "@zeroko-io/core";
+import { build as deploy, type Options } from "@zeroko-io/core";
 
 /** Next's settings for OpenNext: its standalone output. */
 export function withZeroko<T extends object>(
@@ -72,13 +72,10 @@ export async function build(opts: Options & { root?: string } = {}) {
     { cwd: root, stdio: "inherit" },
   );
   if (run.status !== 0) throw new Error("zeroko: OpenNext's build failed");
-  const outDir = path.join(work, "server");
-  await rm(outDir, { recursive: true, force: true });
-  await bundle({ entry: path.join(root, ".open-next", "worker.js"), outDir });
-  const deployment = await collect({
-    serverDir: outDir,
-    main: "index.js",
-    assetsDir: path.join(root, ".open-next", "assets"),
+  return deploy({
+    ...opts,
+    entry: path.join(root, ".open-next", "worker.js"),
+    assets: path.join(root, ".open-next", "assets"),
+    root,
   });
-  return finish(deployment, opts, root);
 }

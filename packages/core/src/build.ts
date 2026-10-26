@@ -1,5 +1,6 @@
-// A whole build in one call, for a service with no front end (Hono,
-// Express, an API): its entry bundled, collected and finished.
+// A whole build in one call: its entry bundled, collected with its assets
+// and finished. A service with no front end (Hono, Express, an API) calls
+// it; every adapter ends with it, after its framework's build.
 //   import { build } from "@zeroko-io/core"
 //   await build({ entry: "src/index.ts" })
 import { rm } from "node:fs/promises"

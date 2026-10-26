@@ -3,11 +3,11 @@
 // bundled with an entry that hands it the service's bindings as
 // event.platform.env (and `env` from "cloudflare:workers" works too).
 //   vite.config.js: sveltekit({ adapter: zeroko() })
-import { rmSync, writeFileSync } from "node:fs"
+import { writeFileSync } from "node:fs"
 import path from "node:path"
 
 import type { Adapter } from "@sveltejs/kit"
-import { bundle, collect, finish, type Options } from "@zeroko-io/core"
+import { build, type Options } from "@zeroko-io/core"
 
 /** The service's main module: SvelteKit's static files and prerendered
  * pages from ASSETS, the rest from its server. */
@@ -82,11 +82,7 @@ export default function zeroko(opts: Options = {}): Adapter {
           prerendered: builder.prerendered.paths,
         })
       )
-      const outDir = path.join(work, "out")
-      rmSync(outDir, { recursive: true, force: true })
-      await bundle({ entry: main, outDir })
-      const deployment = await collect({ serverDir: outDir, main: "index.js", assetsDir: assets })
-      await finish(deployment, opts, process.cwd())
+      await build({ ...opts, entry: main, assets, root: process.cwd() })
     },
   }
 }
