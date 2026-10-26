@@ -13,7 +13,7 @@
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.20.13",
     "@types/react": "19.3.0",
-    "@zeroko-io/next": "^0.2.0",
+    "@zeroko-io/next": "^0.3.0",
     "wrangler": "^4.148.0"
   }
 }

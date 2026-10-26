@@ -4,5 +4,5 @@
   "type": "module",
   "scripts": { "build": "vite build" },
   "dependencies": { "@tanstack/react-router": "^1.170.46", "@tanstack/react-start": "^1.169.4", "react": "^19.0.0", "react-dom": "^19.0.0" },
-  "devDependencies": { "@vitejs/plugin-react": "*", "@zeroko-io/nitro": "^0.2.0", "nitro": "3.0.260903-beta", "vite": "^8.3.5" }
+  "devDependencies": { "@vitejs/plugin-react": "*", "@zeroko-io/nitro": "^0.3.0", "nitro": "3.0.260903-beta", "vite": "^8.3.5" }
 }

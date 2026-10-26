@@ -4,5 +4,5 @@
   "type": "module",
   "scripts": { "build": "node build.js" },
   "dependencies": { "koa": "^3.2.1" },
-  "devDependencies": { "@zeroko-io/core": "^0.2.0" }
+  "devDependencies": { "@zeroko-io/core": "^0.3.0" }
 }

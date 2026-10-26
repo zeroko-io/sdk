@@ -1,6 +1,6 @@
 {
   "name": "@zeroko-io/react-router",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React Router's framework mode on Zeroko: the app built into a Zeroko service and deployed.",
   "license": "MIT",
   "type": "module",
@@ -22,7 +22,7 @@
     "typecheck": "tsc -p . --noEmit"
   },
   "dependencies": {
-    "@zeroko-io/core": "^0.2.0"
+    "@zeroko-io/core": "^0.3.0"
   },
   "peerDependencies": {
     "@react-router/dev": ">=7",

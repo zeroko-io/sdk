@@ -1,6 +1,6 @@
 {
   "name": "@zeroko-io/sveltekit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A SvelteKit adapter for Zeroko: the app built into a Zeroko service and deployed.",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
     "typecheck": "tsc -p . --noEmit"
   },
   "dependencies": {
-    "@zeroko-io/core": "^0.2.0"
+    "@zeroko-io/core": "^0.3.0"
   },
   "peerDependencies": {
     "@sveltejs/kit": ">=2"

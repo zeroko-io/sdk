@@ -4,5 +4,5 @@
   "type": "module",
   "scripts": { "build": "react-router build" },
   "dependencies": { "react": "^19.0.0", "react-dom": "^19.0.0", "react-router": "^8.5.0", "isbot": "*" },
-  "devDependencies": { "@react-router/dev": "^8.5.0", "@zeroko-io/react-router": "^0.2.0", "vite": "^8.3.5" }
+  "devDependencies": { "@react-router/dev": "^8.5.0", "@zeroko-io/react-router": "^0.3.0", "vite": "^8.3.5" }
 }

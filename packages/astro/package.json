@@ -1,6 +1,6 @@
 {
   "name": "@zeroko-io/astro",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An Astro adapter for Zeroko: the site built into a Zeroko service and deployed.",
   "license": "MIT",
   "type": "module",
@@ -22,7 +22,7 @@
     "typecheck": "tsc -p . --noEmit"
   },
   "dependencies": {
-    "@zeroko-io/core": "^0.2.0"
+    "@zeroko-io/core": "^0.3.0"
   },
   "peerDependencies": {
     "astro": ">=5"
