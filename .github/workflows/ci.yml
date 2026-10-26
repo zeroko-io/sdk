@@ -22,5 +22,6 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npx turbo run build typecheck --filter=./packages/*
+      - run: node --test test/config.test.mjs
       - run: docker pull ghcr.io/zeroko-io/runner:latest
       - run: node test/e2e.mjs

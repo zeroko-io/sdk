@@ -9,6 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run build --filter=./packages/core && node --test test/config.test.mjs",
     "test:e2e": "turbo run build --filter=./packages/* && node test/e2e.mjs"
   },
   "devDependencies": {

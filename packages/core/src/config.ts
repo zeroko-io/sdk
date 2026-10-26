@@ -10,8 +10,10 @@ import path from "node:path"
 
 import type { Options } from "./deploy.js"
 
-/** What zeroko.json holds: never the token. */
-export type ZerokoJson = Pick<Options, "service" | "bindings" | "crons" | "vars" | "url">
+/** What zeroko.json holds: what the service is, never where it goes (the
+ * address and the token, in .env): a repository's zeroko.json mustn't send
+ * one's token elsewhere. */
+export type ZerokoJson = Pick<Options, "service" | "bindings" | "crons" | "vars">
 
 /** The KEY=value lines of a .env file, without quotes. */
 function parseEnv(text: string): Record<string, string> {
@@ -53,8 +55,10 @@ export async function resolve(root: string, opts: Options = {}): Promise<Options
     } catch (err) {
       throw new Error(`zeroko: zeroko.json isn't JSON: ${(err as Error).message}`)
     }
-    if ("token" in file) {
-      throw new Error("zeroko: keep the token out of zeroko.json: put ZEROKO_TOKEN in .env")
+    if ("token" in file || "url" in file) {
+      throw new Error(
+        "zeroko: keep the address and the token out of zeroko.json: put ZEROKO_URL and ZEROKO_TOKEN in .env"
+      )
     }
   }
   const env = await envOf(root)
@@ -62,7 +66,7 @@ export async function resolve(root: string, opts: Options = {}): Promise<Options
     ...file,
     ...opts,
     service: opts.service ?? env.ZEROKO_SERVICE ?? file.service,
-    url: opts.url ?? env.ZEROKO_URL ?? file.url,
+    url: opts.url ?? env.ZEROKO_URL,
     token: opts.token ?? env.ZEROKO_TOKEN,
     bindings: { ...file.bindings, ...opts.bindings },
     crons: opts.crons ?? file.crons,
